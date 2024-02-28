@@ -19,13 +19,21 @@ public class ListUs {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "list_us")
+    
     private Long id;
+    @Column(name = "title")
     private String title;
+    @Column(name = "description")
     private String description;
+    @Column(name = "location")
     private String location;
+    @Column(name = "capacity")
     private int capacity;
+    @Column(name = "date")
     private Date date;
+    @Column(name = "time")
     private String time;
+    @Column(name = "image")
     private String image;
 
     @ManyToOne

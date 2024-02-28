@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.HashMap;
 import java.util.Map;
 
+
 @RestController
 @RequestMapping(path = "${api-endpoint}")
 public class AuthController {

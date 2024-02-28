@@ -21,9 +21,15 @@ public class ListUsService {
 
     public ListUs save(@NonNull ListUs type) {
         ListUs newList = new ListUs();
-
-        repository.save(newList);
-        return newList;
+        newList.setTitle(type.getTitle());
+        newList.setDescription(type.getDescription());
+        newList.setLocation(type.getLocation());
+        newList.setCapacity(type.getCapacity());
+        newList.setDate(type.getDate());
+        newList.setTime(type.getTime());
+        newList.setImage(type.getImage());
+        newList.setUser(type.getUser());
+        return repository.save(newList);
     }
     
 }

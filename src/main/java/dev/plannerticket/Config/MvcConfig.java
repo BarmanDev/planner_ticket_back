@@ -1,5 +1,4 @@
 package dev.plannerticket.Config;
-
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -17,4 +16,3 @@ public class MvcConfig implements WebMvcConfigurer {
                 // .addResourceLocations("classpath:/static/images/");
     }
 }
-

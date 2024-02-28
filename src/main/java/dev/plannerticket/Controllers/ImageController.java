@@ -14,22 +14,6 @@ import dev.plannerticket.Services.FileStorageService;
 
 @RestController
 @RequestMapping(path = "${api-endpoint}")
-/* public class ImageController {
-
-    private final String uploadDir = "src/main/resources/static/images/";
-
-    @SuppressWarnings("null")
-    @GetMapping("/images/{filename:.+}")
-    public ResponseEntity<Resource> downloadFile(@PathVariable String filename) throws IOException {
-        Path filePath = Paths.get(uploadDir).resolve(filename).normalize();
-        Resource resource = new UrlResource(filePath.toUri());
-
-        return ResponseEntity.ok()
-                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + resource.getFilename() + "\"")
-                .contentType(MediaType.IMAGE_JPEG) 
-                .body(resource);
-    }
-} */
 
 public class ImageController {
         @Autowired

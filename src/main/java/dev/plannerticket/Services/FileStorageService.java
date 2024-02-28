@@ -20,6 +20,7 @@ public class FileStorageService {
 
     public String storeFile(MultipartFile file) {
         // Genera un nombre de archivo único para evitar conflictos
+        @SuppressWarnings("null")
         String fileName = StringUtils.cleanPath(file.getOriginalFilename());
         Path path = Paths.get(uploadDir, fileName);
 
