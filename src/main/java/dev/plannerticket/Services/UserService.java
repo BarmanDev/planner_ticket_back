@@ -21,9 +21,9 @@ public class UserService {
         return users;
     }
 
-    public User save(@NonNull User type) {
-        User newUser = new User();
-
+    public User save(@NonNull User user) {
+        User newUser = new User(user.getId(), user.getUsername(), user.getPassword(), user.getEmail(), user.getRoles());
+    
         repository.save(newUser);
         return newUser;
     }

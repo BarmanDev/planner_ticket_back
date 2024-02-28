@@ -50,6 +50,8 @@ public class SecurityConfiguration {
                 .requestMatchers(HttpMethod.GET, endpoint + "/images").permitAll()
                 .requestMatchers(HttpMethod.POST, endpoint + "/images").permitAll()
                 .requestMatchers(HttpMethod.POST, endpoint + "/events").permitAll()
+                .requestMatchers(HttpMethod.POST, endpoint + "/logout").permitAll()
+                .requestMatchers(HttpMethod.POST, endpoint + "/users").permitAll()
                 .anyRequest().authenticated())
                 .userDetailsService(jpaUserDetailsService)
                 .httpBasic(Customizer.withDefaults())

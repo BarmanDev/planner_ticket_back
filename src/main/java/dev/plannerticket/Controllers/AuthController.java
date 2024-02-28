@@ -32,4 +32,11 @@ public class AuthController {
         
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(json);
     }
+
+    @GetMapping("/logout")
+    public ResponseEntity<String> logout() {
+        SecurityContextHolder.clearContext(); 
+        return ResponseEntity.ok("Cierrame sesión ya!!!!");
+    }
+
 }
