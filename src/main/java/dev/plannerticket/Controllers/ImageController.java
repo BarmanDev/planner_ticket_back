@@ -1,34 +1,30 @@
 package dev.plannerticket.Controllers;
 
-import org.springframework.core.io.Resource;
-import org.springframework.core.io.UrlResource;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
-import java.io.IOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import dev.plannerticket.Services.FileStorageService;
 
 
-//controlador manejará las solicitudes para recuperar las imágenes y devolverá las imágenes almacenadas en la carpeta src/main/resources/static/images/.
+@RestController
+@RequestMapping(path = "${api-endpoint}")
 
-@Controller
 public class ImageController {
+        @Autowired
+        private FileStorageService fileStorageService;
 
-    private final String uploadDir = "src/main/resources/static/images/";
-
-    @GetMapping("/images/{filename:.+}")
-    public ResponseEntity<Resource> downloadFile(@PathVariable String filename) throws IOException {
-        Path filePath = Paths.get(uploadDir).resolve(filename).normalize();
-        Resource resource = new UrlResource(filePath.toUri());
-
-        return ResponseEntity.ok()
-                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + resource.getFilename() + "\"")
-                .contentType(MediaType.IMAGE_JPEG)  // o el tipo de contenido correcto para tus imágenes
-                .body(resource);
+    @PostMapping(path = "/images")
+    public ResponseEntity<String> uploadImage(@RequestParam("file") MultipartFile file) {
+        // Utiliza FileStorageService para guardar la imagen
+        String fileName = fileStorageService.storeFile(file);
+        // Respuesta con el nombre del archivo
+        return ResponseEntity.status(HttpStatus.CREATED).body("Archivo subido con éxito: " + fileName);
     }
+
 }

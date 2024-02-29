@@ -12,23 +12,26 @@ import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 
-
 @Entity
 @Table(name = "roles")
 public class Role {
 
     @Id 
-    @GeneratedValue(strategy =  GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_role")
     private Long id;
+    
     private String name;
 
     @JsonIgnore
     @ManyToMany(mappedBy = "roles")
-    Set<User> users;
+    private Set<User> users;
 
     public Role() {
     }
+
+
+
 
     public Role(Long id, String name, Set<User> users) {
         this.id = id;
@@ -59,9 +62,4 @@ public class Role {
     public void setUsers(Set<User> users) {
         this.users = users;
     }
-    
-
-    
-
-    
 }
